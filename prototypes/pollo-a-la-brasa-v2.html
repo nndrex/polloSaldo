@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pollo a la Brasa — Fuego y Humo</title>
+<style>
+  :root {
+    --bg: oklch(0.16 0.015 55);
+    --surface: oklch(0.22 0.02 55);
+    --fg: oklch(0.93 0.02 85);
+    --muted: oklch(0.68 0.05 75);
+    --border: oklch(0.34 0.04 60);
+    --accent: oklch(0.78 0.14 80);
+    --accent-hover: oklch(0.84 0.14 82);
+    --accent-press: oklch(0.72 0.14 78);
+    --on-accent: oklch(0.18 0.03 55);
+    --font-display: "Iowan Old Style", Charter, Georgia, serif;
+    --font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: var(--on-accent); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero__ember,
+  .hero__smoke,
+  .hero__smoke--b,
+  .hero__grain {
+    position: absolute;
+    inset: -12%;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .hero__ember {
+    background:
+      radial-gradient(42% 55% at 72% 42%, oklch(0.55 0.13 70 / 0.55), transparent 70%),
+      radial-gradient(30% 40% at 88% 78%, oklch(0.45 0.15 40 / 0.35), transparent 72%),
+      radial-gradient(60% 80% at 20% 90%, oklch(0.28 0.05 50 / 0.5), transparent 75%);
+  }
+
+  .hero__smoke {
+    background:
+      radial-gradient(38% 30% at 30% 30%, oklch(0.40 0.03 75 / 0.30), transparent 70%),
+      radial-gradient(45% 35% at 60% 75%, oklch(0.35 0.03 70 / 0.24), transparent 72%);
+    filter: blur(6px);
+    animation: drift-a 44s ease-in-out infinite alternate;
+  }
+
+  .hero__smoke--b {
+    background:
+      radial-gradient(30% 26% at 78% 22%, oklch(0.42 0.04 85 / 0.22), transparent 70%);
+    filter: blur(10px);
+    animation: drift-b 58s ease-in-out infinite alternate;
+  }
+
+  @keyframes drift-a {
+    from { transform: translate3d(-3%, -2%, 0) scale(1); }
+    to   { transform: translate3d(4%, 3%, 0) scale(1.08); }
+  }
+
+  @keyframes drift-b {
+    from { transform: translate3d(3%, 2%, 0); }
+    to   { transform: translate3d(-4%, -3%, 0); }
+  }
+
+  .hero__grain {
+    inset: 0;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+    padding: 88px 7vw 72px;
+    will-change: transform, opacity;
+  }
+
+  .hero__eyebrow {
+    display: inline-block;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .hero__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(44px, 5.4vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    max-width: 14ch;
+    text-wrap: balance;
+    margin-bottom: 22px;
+  }
+
+  .hero__lede {
+    color: var(--muted);
+    font-size: 19px;
+    max-width: 46ch;
+    text-wrap: pretty;
+  }
+
+  /* ---------- Order form ---------- */
+
+  .order {
+    background: oklch(0.22 0.02 55 / 0.82);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 36px 32px 32px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 24px 60px oklch(0.05 0.01 55 / 0.55);
+  }
+
+  .order__label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .order__hint {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .order__row {
+    display: flex;
+    gap: 12px;
+  }
+
+  .order__input {
+    flex: 0 0 108px;
+    height: 52px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--fg);
+    font-family: var(--font-mono);
+    font-size: 22px;
+    text-align: center;
+    transition: border-color 160ms ease;
+  }
+
+  .order__input:hover { border-color: var(--muted); }
+
+  .order__input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px oklch(0.78 0.14 80 / 0.25);
+  }
+
+  .order__input::placeholder { color: oklch(0.55 0.04 70); }
+
+  .btn {
+    flex: 1;
+    height: 52px;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 160ms ease, transform 120ms ease;
+  }
+
+  .btn:hover { background: var(--accent-hover); }
+  .btn:active { background: var(--accent-press); transform: translateY(1px); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .order__note {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* ---------- Bar chart (the grills) ---------- */
+
+  .bars {
+    position: relative;
+    padding: 110px 7vw 90px;
+  }
+
+  .chart__head {
+    max-width: 1180px;
+    margin: 0 auto 46px;
+  }
+
+  .chart__kicker {
+    display: block;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .chart__title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(32px, 3.8vw, 50px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin-bottom: 12px;
+  }
+
+  .chart__sub {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 56ch;
+    text-wrap: pretty;
+  }
+
+  .chart {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: 64px;
+  }
+
+  .chart__cat {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    writing-mode: vertical-rl;
+    font-family: var(--font-mono);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--fg);
+    letter-spacing: 0.08em;
+    user-select: none;
+  }
+
+  .chart__plot { position: relative; }
+
+  .chart__grid {
+    position: absolute;
+    inset: -12px 0 -32px;
+    pointer-events: none;
+  }
+
+  .chart__grid span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: oklch(0.34 0.04 60 / 0.45);
+  }
+
+  .chart__row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 4px;
+    padding: 10px 0;
+  }
+
+  .chart__fillbar {
+    height: 15px;
+    width: 0;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 850ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition-delay: calc(var(--i, 0) * 110ms);
+  }
+
+  .chart__row.is-visible .chart__fillbar { width: var(--w, 0%); }
+
+  .chart__row:hover .chart__fillbar { background: var(--accent-hover); }
+
+  .chart__meta {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-left: 14px;
+    white-space: nowrap;
+  }
+
+  .chart__value {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fg);
+  }
+
+  .chart__name {
+    font-size: 16px;
+    color: var(--muted);
+    transition: color 160ms ease;
+  }
+
+  .chart__row:hover .chart__name { color: var(--fg); }
+
+  .chart__axis {
+    position: relative;
+    height: 32px;
+    margin-top: 2px;
+  }
+
+  .chart__axis span {
+    position: absolute;
+    top: 8px;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 0 6px;
+  }
+
+  .chart__axis span:first-child { transform: none; padding-left: 0; }
+
+  .chart__foot {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 22px;
+    font-family: var(--font-mono);
+  }
+
+  .chart__foot strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--fg);
+  }
+
+  .chart__foot span {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .chart__reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 620ms ease, transform 620ms ease;
+  }
+
+  .chart__reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* ---------- Closing ---------- */
+
+  .closing {
+    position: relative;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 96px 7vw 64px;
+    overflow: hidden;
+  }
+
+  .closing__line {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(38px, 5vw, 68px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+    text-wrap: balance;
+    margin-bottom: 18px;
+  }
+
+  .closing__sub {
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .closing__table {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    min-height: 1.4em;
+  }
+
+  .closing__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+  }
+
+  .closing__credit { color: var(--muted); font-size: 14px; }
+
+  .toplink {
+    background: none;
+    border: none;
+    color: var(--fg);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 10px 2px;
+    transition: color 160ms ease;
+  }
+
+  .toplink:hover { color: var(--accent); }
+
+  /* ---------- Reduced motion ---------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__smoke, .hero__smoke--b { animation: none; }
+    .chart__fillbar { transition: none; }
+    .chart__reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------- Mobile ---------- */
+
+  @media (max-width: 920px) {
+    .hero { align-items: stretch; }
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-content: center;
+      padding: 72px 6vw 56px;
+    }
+    .hero__title { font-size: clamp(40px, 11vw, 56px); }
+    .hero__lede { font-size: 17px; }
+    .order { padding: 28px 22px 24px; }
+    .order__row { flex-direction: column; }
+    .order__input { flex: none; width: 100%; }
+    .chart__cat { display: none; }
+    .chart { padding-left: 0; }
+    .chart__fillbar { height: 13px; }
+    .chart__meta { white-space: normal; }
+    .chart__grid { inset: -12px 0 -32px; }
+    .chart__foot { flex-wrap: wrap; gap: 10px; }
+    .closing { padding: 72px 6vw 48px; }
+    .closing__row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<main id="content">
+
+  <!-- Act I: hero -->
+  <section class="hero" data-od-id="hero" aria-label="Pollo a la brasa — pedido">
+    <div class="hero__ember" data-parallax="0.22" aria-hidden="true"></div>
+    <div class="hero__smoke" data-parallax="0.10" aria-hidden="true"></div>
+    <div class="hero__smoke--b" data-parallax="0.16" aria-hidden="true"></div>
+    <div class="hero__grain" aria-hidden="true"></div>
+
+    <div class="hero__inner" data-od-id="hero-inner" data-parallax="0.06" data-fade>
+      <div data-od-id="hero-copy">
+        <span class="mono hero__eyebrow" data-od-id="hero-eyebrow">Pollo a la brasa · Lima, Perú</span>
+        <h1 class="hero__title" data-od-id="hero-title">Fuego, humo y un pollo perfecto.</h1>
+        <p class="hero__lede" data-od-id="hero-lede">
+          Marinado toda la noche en ají y ajo, girando sobre el carbón vivo hasta que
+          la piel se vuelve latón. Dinos cuántos son — del resto nos encargamos.
+        </p>
+      </div>
+
+      <form class="order" id="order-form" data-od-id="order-form">
+        <label class="order__label" for="guests">¿Cuántos van a comer?</label>
+        <p class="order__hint" id="guests-hint">Escribe cuántos tienen hambre, del 1 al 40.</p>
+        <div class="order__row">
+          <input
+            class="order__input"
+            id="guests"
+            data-od-id="guests-input"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            max="40"
+            step="1"
+            placeholder="2"
+            aria-describedby="guests-hint"
+            required>
+          <button class="btn" type="submit" data-od-id="cta-fire">Prende la brasa</button>
+        </div>
+        <p class="order__note">Solo pollos enteros, tallados en la mesa. Papas y ambas cremas siempre incluidas.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Act II: the grill chart -->
+  <section class="bars" id="bars" data-od-id="bars" aria-label="Brasas de Lima — pollos por domingo">
+
+    <div class="chart__head" data-od-id="chart-head">
+      <span class="mono chart__kicker" data-od-id="chart-kicker">La tabla · Lima</span>
+      <h2 class="chart__title" data-od-id="chart-title">Dónde hace fila la ciudad.</h2>
+      <p class="chart__sub" data-od-id="chart-sub">
+        Pollos atendidos el último domingo, casa por casa. Cifras de muestra para el
+        prototipo — reemplázalas con tus propios datos cuando las brasas reporten.
+      </p>
+    </div>
+
+    <div class="chart" data-od-id="chart">
+      <span class="chart__cat" aria-hidden="true">Brasa</span>
+
+      <div class="chart__plot" data-od-id="chart-plot">
+        <div class="chart__grid" aria-hidden="true">
+          <span style="left:0"></span>
+          <span style="left:25%"></span>
+          <span style="left:50%"></span>
+          <span style="left:75%"></span>
+          <span style="left:100%"></span>
+        </div>
+
+        <div class="chart__row chart__reveal" data-od-id="chart-row-toldos" style="--w: 19.4%; --i: 0">
+          <span class="chart__fillbar"></span>
+          <span class="chart__meta">
+            <span class="chart__value">310</span>
+            <span class="chart__name">Los Toldos Chicken</span>
+          </span>
+        </div>
+
+        <div class="chart__row chart__reveal" data-od-id="chart-row-norkys" style="--w: 32.5%; --i: 1">
+          <span class="chart__fillbar"></span>
+          <span class="chart__meta">
+            <span class="chart__value">520</span>
+            <span class="chart__name">Norky&rsquo;s</span>
+          </span>
+        </div>
+
+        <div class="chart__row chart__reveal" data-od-id="chart-row-rokys" style="--w: 40%; --i: 2">
+          <span class="chart__fillbar"></span>
+          <span class="chart__meta">
+            <span class="chart__value">640</span>
+            <span class="chart__name">Roky&rsquo;s</span>
+          </span>
+        </div>
+
+        <div class="chart__row chart__reveal" data-od-id="chart-row-pardos" style="--w: 73.8%; --i: 3">
+          <span class="chart__fillbar"></span>
+          <span class="chart__meta">
+            <span class="chart__value">1,180</span>
+            <span class="chart__name">Pardo&rsquo;s Chicken</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="chart__axis" aria-hidden="true">
+        <span style="left:0">0</span>
+        <span style="left:25%">400</span>
+        <span style="left:50%">800</span>
+        <span style="left:75%">1,200</span>
+        <span style="left:100%">1,600</span>
+      </div>
+
+      <p class="chart__foot" data-od-id="chart-foot">
+        <strong>Pollos / Domingo</strong>
+        <span>Cifras de muestra</span>
+      </p>
+    </div>
+
+    <!-- Text at the bottom -->
+    <footer class="closing" data-od-id="closing-bar">
+      <p class="closing__line" data-od-id="closing-line">Crujiente por fuera. Jugoso por dentro. Lima en cada bocado.</p>
+      <p class="closing__sub">La brasa nunca duerme — el carbón jamás descansa</p>
+      <p class="closing__table" id="closing-table" data-od-id="closing-table" role="status">El carbón está listo.</p>
+      <div class="closing__row">
+        <span class="closing__credit">El pollo a la brasa — un clásico peruano desde los años 50.</span>
+        <button class="toplink" type="button" id="toplink" data-od-id="toplink">Volver a la brasa ↑</button>
+      </div>
+    </footer>
+
+  </section>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll("[data-parallax]"));
+  var fadeEl = document.querySelector("[data-fade]");
+  var hero = document.querySelector(".hero");
+  var ticking = false;
+
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function applyParallax() {
+    ticking = false;
+    if (reduceMotion) return;
+
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    var vh = window.innerHeight;
+    var heroH = hero ? hero.offsetHeight : vh;
+    var heroVisible = scrollY < heroH + 80;
+
+    for (var i = 0; i < parallaxEls.length; i++) {
+      var el = parallaxEls[i];
+      var speed = parseFloat(el.getAttribute("data-parallax")) || 0;
+
+      if (heroVisible) {
+        el.style.transform = "translate3d(0," + (scrollY * speed).toFixed(1) + "px,0)";
+      }
+    }
+
+    if (fadeEl && heroVisible) {
+      var progress = clamp(scrollY / (heroH * 0.7), 0, 1);
+      fadeEl.style.opacity = (1 - progress * 0.85).toFixed(3);
+    }
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(applyParallax);
+    }
+  }
+
+  window.addEventListener("scroll", requestTick, { passive: true });
+  window.addEventListener("resize", requestTick);
+  applyParallax();
+
+  /* Reveal chart rows */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".chart__reveal"));
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+  }
+
+  /* Form → parallax descent to the bars */
+  var form = document.getElementById("order-form");
+  var input = document.getElementById("guests");
+  var tableLine = document.getElementById("closing-table");
+  var bars = document.getElementById("bars");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var value = parseInt(input.value, 10);
+
+    if (isNaN(value) || value < 1 || value > 40) {
+      input.focus();
+      return;
+    }
+
+    tableLine.textContent = "Mesa para " + value + " — el carbón está listo.";
+
+    var top = bars.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop);
+    window.scrollTo({ top: top, behavior: reduceMotion ? "auto" : "smooth" });
+  });
+
+  document.getElementById("toplink").addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+  });
+})();
+</script>
+
+</body>
+</html>

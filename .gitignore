@@ -1,0 +1,44 @@
+# --- Secrets & credentials (never commit) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*credentials*
+*secret*
+*.htpasswd
+
+# --- Python (scraper) ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Node (web) ---
+node_modules/
+dist/
+*.tsbuildinfo
+npm-debug.log*
+bun.lockb.bak
+
+# --- opencode local state ---
+.opencode/node_modules/
+
+# --- OS / editor noise ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.log

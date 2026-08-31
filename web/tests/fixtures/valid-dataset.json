@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-29T13:00:00Z",
+  "prices": [
+    {
+      "restaurant": "primos",
+      "product": "pollo-entero",
+      "productName": "1 Pollo + Papas fritas + Ensalada",
+      "price": 89.0,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T13:00:00Z",
+      "sourceUrl": "https://www.primoschickenbar.pe/carta"
+    }
+  ]
+}

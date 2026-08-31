@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>polloSaldo — ¿cuánto trabajo cuesta un pollo a la brasa?</title>
+    <meta
+      name="description"
+      content="Calcula cuántos minutos de tu trabajo cuesta un pollo a la brasa según los precios diarios de las pollerías del Perú."
+    />
+  </head>
+  <body>
+    <main id="content">
+      <section class="hero" id="hero">
+        <div class="hero__ember" data-parallax="0.22" aria-hidden="true"></div>
+        <div class="hero__smoke" data-parallax="0.10" aria-hidden="true"></div>
+        <div class="hero__smoke--b" data-parallax="0.16" aria-hidden="true"></div>
+        <div class="hero__grain" aria-hidden="true"></div>
+
+        <div class="hero__inner" data-parallax="0.06" data-fade>
+          <div>
+            <span class="mono hero__eyebrow" id="eyebrow"></span>
+            <h1 class="hero__title" id="headline"></h1>
+            <p class="hero__lede" id="lede"></p>
+          </div>
+
+          <form class="order" id="order-form" novalidate>
+            <label class="order__label" for="salary" id="salary-label"></label>
+            <p class="order__hint" id="salary-hint"></p>
+            <div class="order__row">
+              <input
+                class="order__input"
+                id="salary"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                aria-describedby="salary-hint"
+              />
+              <button class="btn" type="submit" id="cta"></button>
+            </div>
+            <fieldset class="order__seg">
+              <legend class="order__label" id="product-legend"></legend>
+              <div class="order__seg-row" id="product-options"></div>
+            </fieldset>
+            <p class="order__note" id="order-note"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="bars" id="bars">
+        <div class="chart__head">
+          <span class="mono chart__kicker" id="chart-kicker"></span>
+          <h2 class="chart__title" id="chart-title"></h2>
+          <p class="chart__sub" id="chart-sub"></p>
+        </div>
+
+        <div class="chart">
+          <span class="chart__cat" id="chart-cat" aria-hidden="true"></span>
+
+          <div class="chart__plot">
+            <div class="chart__grid" id="grid" aria-hidden="true"></div>
+            <div class="chart__rows" id="rows"></div>
+          </div>
+
+          <div class="chart__axis" id="axis" aria-hidden="true"></div>
+
+          <p class="chart__foot">
+            <strong id="chart-foot-strong"></strong>
+            <span id="chart-updated"></span>
+          </p>
+        </div>
+
+        <footer class="closing closing--slim">
+          <div class="closing__row">
+            <span class="closing__actions">
+              <a
+                class="toplink toplink--link"
+                id="github-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              ></a>
+              <button class="toplink" type="button" id="toplink"></button>
+            </span>
+          </div>
+        </footer>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

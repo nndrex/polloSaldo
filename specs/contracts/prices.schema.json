@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/nndrex/polloSaldo/specs/contracts/prices.schema.json",
+  "title": "PolloSaldo prices dataset",
+  "description": "Contract for data/prices.json. Written by the scraper, consumed by the web calculator. The scraper MUST validate its output against this schema before writing; CI MUST validate data/prices.json against it.",
+  "type": "object",
+  "required": ["version", "updatedAt", "prices"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "description": "Schema version of this file. Bump on breaking changes.",
+      "const": 1
+    },
+    "updatedAt": {
+      "description": "Timestamp of the last successful scrape run (ISO 8601, UTC).",
+      "type": "string",
+      "format": "date-time"
+    },
+    "prices": {
+      "description": "Latest known price per restaurant+product. One entry per pair, no history (history lives in git).",
+      "type": "array",
+      "items": { "$ref": "#/definitions/price" }
+    }
+  },
+  "definitions": {
+    "restaurant": {
+      "description": "Canonical polleria identifiers. Add new ones only via a spec change.",
+      "enum": [
+        "rokys",
+        "norkys",
+        "pardos",
+        "villa-chicken",
+        "primos",
+        "granja-azul",
+        "tori"
+      ]
+    },
+    "product": {
+      "description": "Canonical product slugs shared across restaurants so the calculator can compare.",
+      "enum": [
+        "pollo-entero",
+        "medio-pollo",
+        "cuarto-pollo"
+      ]
+    },
+    "price": {
+      "type": "object",
+      "required": [
+        "restaurant",
+        "product",
+        "productName",
+        "price",
+        "currency",
+        "scrapedAt",
+        "sourceUrl"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "restaurant": { "$ref": "#/definitions/restaurant" },
+        "product": { "$ref": "#/definitions/product" },
+        "productName": {
+          "description": "Product name as displayed on the source site (for provenance).",
+          "type": "string",
+          "minLength": 1
+        },
+        "price": {
+          "description": "Unit price as a decimal number, never a string.",
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10000
+        },
+        "currency": {
+          "enum": ["PEN"]
+        },
+        "scrapedAt": {
+          "description": "When this price was scraped (ISO 8601, UTC).",
+          "type": "string",
+          "format": "date-time"
+        },
+        "sourceUrl": {
+          "description": "Exact page the price was extracted from.",
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  }
+}

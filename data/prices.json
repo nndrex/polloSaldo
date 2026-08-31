@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-29T18:15:25Z",
+  "prices": [
+    {
+      "restaurant": "pardos",
+      "product": "cuarto-pollo",
+      "productName": "1/4 Pardos Brasa con papas fritas o doradas y guarnición de ensalada Pardos",
+      "price": 31.9,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://www.pardoschicken.pe/categorias/pardos-brasa"
+    },
+    {
+      "restaurant": "pardos",
+      "product": "medio-pollo",
+      "productName": "1/2 Pardos Brasa con una porción de papas fritas personal y guarnición de ensalada Pardos",
+      "price": 49.9,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://www.pardoschicken.pe/categorias/pardos-brasa"
+    },
+    {
+      "restaurant": "pardos",
+      "product": "pollo-entero",
+      "productName": "1 Pardos Brasa",
+      "price": 60.5,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://www.pardoschicken.pe/categorias/pardos-brasa"
+    },
+    {
+      "restaurant": "primos",
+      "product": "cuarto-pollo",
+      "productName": "1/4 Pollo (Pecho)",
+      "price": 35.0,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://www.primoschickenbar.pe/carta"
+    },
+    {
+      "restaurant": "primos",
+      "product": "medio-pollo",
+      "productName": "1/2 Pollo",
+      "price": 53.0,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://www.primoschickenbar.pe/carta"
+    },
+    {
+      "restaurant": "primos",
+      "product": "pollo-entero",
+      "productName": "1 Pollo + Papas fritas + Ensalada",
+      "price": 89.0,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://www.primoschickenbar.pe/carta"
+    },
+    {
+      "restaurant": "tori",
+      "product": "cuarto-pollo",
+      "productName": "1/4 DÚO PERFECTO",
+      "price": 29.9,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://www.tori.pe/carta-delivery"
+    },
+    {
+      "restaurant": "tori",
+      "product": "medio-pollo",
+      "productName": "1/2 DÚO PERFECTO",
+      "price": 44.9,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://www.tori.pe/carta-delivery"
+    },
+    {
+      "restaurant": "tori",
+      "product": "pollo-entero",
+      "productName": "POLLO TORI",
+      "price": 58.9,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://www.tori.pe/carta-delivery"
+    },
+    {
+      "restaurant": "villa-chicken",
+      "product": "cuarto-pollo",
+      "productName": "1/4 POLLO + PAPAS REGULARES + ENSALADA CLASICA",
+      "price": 26.9,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://villachicken.com.pe/villaweb/carta"
+    },
+    {
+      "restaurant": "villa-chicken",
+      "product": "medio-pollo",
+      "productName": "1/2 POLLO + PAPAS MEDIANAS + ENSALADA CLASICA",
+      "price": 45.8,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://villachicken.com.pe/villaweb/carta"
+    },
+    {
+      "restaurant": "villa-chicken",
+      "product": "pollo-entero",
+      "productName": "1 POLLO + PAPAS GRANDES + ENSALADA CLASICA",
+      "price": 78.2,
+      "currency": "PEN",
+      "scrapedAt": "2026-08-29T18:15:25Z",
+      "sourceUrl": "https://villachicken.com.pe/villaweb/carta"
+    }
+  ]
+}
