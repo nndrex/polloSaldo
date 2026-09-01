@@ -38,13 +38,26 @@ is the "where we are" snapshot for continuing sessions._
 
 ## Open items (next actions)
 
-1. **8 open Dependabot PRs (#1–#8)** — all major-version bumps, need user decision:
-   actions/checkout 4→7, setup-python 5→7, deploy-pages 4→5, upload-pages-artifact 3→5,
-   setup-bun 2.0.1→2.2.0, typescript 5.9.3→7.0.2, vite 6.4.3→8.2.2, vitest 2.1.9→4.1.11.
-   Merge one at a time; `bun run test && bun run build` must stay green (Actions bumps
-   verified by green workflow runs).
-2. Security findings report (spec 003 AC-1) was delivered in chat only — not persisted
+1. ~~8 open Dependabot PRs~~ — **3 merged 2026-09-01 after per-branch verification**
+   (full gate `bun install → vitest → tsc + vite build` run in isolated worktrees):
+   - ✅ #7 vite 6.4.3→8.2.2 (safe)
+   - ✅ #5 vitest 2.1.9→4.1.11 (safe; dependabot auto-rebased onto vite-8 main)
+   - ✅ #8 typescript 5.9.3→7.0.2 — **was breaking on the old base** (TS7 native
+     compiler rejected the side-effect CSS import, TS2882); resolved by the rebase
+     onto main: `vite-env.d.ts` + vite 8's `vite/client` types declare `*.css`.
+     Final combined stack (vite 8 + vitest 4 + ts 7): 36/36 tests, build clean,
+     deploy green, live bundle verified.
+   - ⏳ Remaining open (workflow-only, low risk): #1 setup-python 7, #2 deploy-pages 5,
+     #3 checkout 7, #4 upload-pages-artifact 5, #6 setup-bun 2.2.0.
+2. ~~Dependabot critical vulnerability alert~~ — most likely fixed by the vite 8
+   merge; **verify** at https://github.com/nndrex/polloSaldo/security/dependabot
+   (alert details need `security_events:read` — token got 403 on 2026-09-01).
+3. Security findings report (spec 003 AC-1) was delivered in chat only — not persisted
    in the repo. If wanted, capture it under `specs/003-launch-security-deploy/`.
-3. Optional hardening (all non-blocking): secret scanning validity checks and
+4. Optional hardening (all non-blocking): secret scanning validity checks and
    non-provider patterns are `disabled` by default; enable in Settings → Code security
    if desired.
+5. Gap noted 2026-09-01: no CI runs on PRs (workflows trigger on push/schedule only),
+   so Dependabot PRs arrive unverified. Options: add a `pull_request`-triggered
+   test workflow (safe here — no secrets, untrusted-checkout rules respected), or
+   keep manual verification per merge.
