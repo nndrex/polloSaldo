@@ -63,10 +63,12 @@ based on daily-scraped prices from Peruvian pollerías.
 - [x] Step 1 artifacts written (schema, spec 001, spec 002, agents, this plan)
 - [x] Agents: spec-writer (primary), scraper-developer + web-developer (subagents)
 - [x] Session handoff doc written (`STATUS.md` — read that first when resuming)
-- [x] **Spec 001 approved by user** (2026-08-29) — spec 002 still draft
-- [ ] Step 2: site recon resolved ← next action
+- [x] Spec 001 approved by user (2026-08-29)
 - [x] Step 2: site recon resolved (2026-08-29 — evidence in spec 001 §4)
-- [x] Step 3: scraper implemented (2026-08-29 — 20 tests passing, live run OK)
-- [x] Step 4: calculator implemented (2026-08-29, bun + vite + vanilla TS)
-- [ ] Step 5: CI workflows
-- [ ] Step 6: scaffold + README
+- [x] Step 3: scraper implemented (2026-08-29 — tests passing, live run OK)
+- [x] Step 4: calculator implemented (2026-08-29/30, bun + vite + vanilla TS, spec 002 §6–§8)
+- [x] **Spec 003 approved + executed** (2026-08-31): security review, test gate,
+      repo created & pushed, Pages live, cron green (2026-08-31, 2026-09-01)
+- [x] Step 5: CI workflows — done, verified green 2026-09-01
+- [x] Step 6: scaffold + README — done (README, SECURITY.md, dependabot.yml)
+- [ ] Post-launch: triage 8 open Dependabot PRs (#1–#8, major bumps) ← next action

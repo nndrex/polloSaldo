@@ -10,7 +10,7 @@ const validate = ajv.compile(schema);
 export async function loadPrices(
   fetchFn: typeof fetch = fetch,
 ): Promise<PricesDataset> {
-  const response = await fetchFn("/prices.json");
+  const response = await fetchFn(`${import.meta.env.BASE_URL}prices.json`);
   if (!response.ok) {
     throw new Error(`prices.json unavailable (HTTP ${response.status})`);
   }

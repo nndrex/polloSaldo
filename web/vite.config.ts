@@ -11,7 +11,8 @@ function pricesJsonPlugin(): Plugin {
     name: "pollosaldo-prices-json",
     configureServer(server: ViteDevServer) {
       server.middlewares.use((req, res, next) => {
-        if (req.url?.split("?")[0] === "/prices.json" && existsSync(PRICES_FILE)) {
+        const pathname = req.url?.split("?")[0] ?? "";
+        if (pathname.endsWith("/prices.json") && existsSync(PRICES_FILE)) {
           res.setHeader("Content-Type", "application/json");
           res.end(readFileSync(PRICES_FILE));
           return;
@@ -29,6 +30,7 @@ function pricesJsonPlugin(): Plugin {
 }
 
 export default defineConfig({
+  base: "/polloSaldo/",
   plugins: [pricesJsonPlugin()],
   server: {
     fs: { allow: [dirname(ROOT)] },
