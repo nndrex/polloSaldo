@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-01T13:01:38Z",
+  "updatedAt": "2026-09-02T13:01:56Z",
   "prices": [
     {
       "restaurant": "pardos",
@@ -8,7 +8,7 @@
       "productName": "1/4 Pardos Brasa con papas fritas o doradas y guarnición de ensalada Pardos",
       "price": 31.9,
       "currency": "PEN",
-      "scrapedAt": "2026-09-01T13:01:38Z",
+      "scrapedAt": "2026-09-02T13:01:56Z",
       "sourceUrl": "https://www.pardoschicken.pe/categorias/pardos-brasa"
     },
     {
@@ -17,7 +17,7 @@
       "productName": "1/2 Pardos Brasa con una porción de papas fritas personal y guarnición de ensalada Pardos",
       "price": 49.9,
       "currency": "PEN",
-      "scrapedAt": "2026-09-01T13:01:38Z",
+      "scrapedAt": "2026-09-02T13:01:56Z",
       "sourceUrl": "https://www.pardoschicken.pe/categorias/pardos-brasa"
     },
     {
@@ -26,7 +26,7 @@
       "productName": "1 Pardos Brasa",
       "price": 60.5,
       "currency": "PEN",
-      "scrapedAt": "2026-09-01T13:01:38Z",
+      "scrapedAt": "2026-09-02T13:01:56Z",
       "sourceUrl": "https://www.pardoschicken.pe/categorias/pardos-brasa"
     },
     {
@@ -35,7 +35,7 @@
       "productName": "1/4 Pollo (Pecho)",
       "price": 35.0,
       "currency": "PEN",
-      "scrapedAt": "2026-09-01T13:01:38Z",
+      "scrapedAt": "2026-09-02T13:01:56Z",
       "sourceUrl": "https://www.primoschickenbar.pe/carta"
     },
     {
@@ -44,7 +44,7 @@
       "productName": "1/2 Pollo",
       "price": 53.0,
       "currency": "PEN",
-      "scrapedAt": "2026-09-01T13:01:38Z",
+      "scrapedAt": "2026-09-02T13:01:56Z",
       "sourceUrl": "https://www.primoschickenbar.pe/carta"
     },
     {
@@ -53,7 +53,7 @@
       "productName": "1 Pollo + Papas fritas + Ensalada",
       "price": 89.0,
       "currency": "PEN",
-      "scrapedAt": "2026-09-01T13:01:38Z",
+      "scrapedAt": "2026-09-02T13:01:56Z",
       "sourceUrl": "https://www.primoschickenbar.pe/carta"
     },
     {
@@ -62,7 +62,7 @@
       "productName": "1/4 DÚO PERFECTO",
       "price": 29.9,
       "currency": "PEN",
-      "scrapedAt": "2026-09-01T13:01:38Z",
+      "scrapedAt": "2026-09-02T13:01:56Z",
       "sourceUrl": "https://www.tori.pe/carta-delivery"
     },
     {
@@ -71,7 +71,7 @@
       "productName": "1/2 DÚO PERFECTO",
       "price": 44.9,
       "currency": "PEN",
-      "scrapedAt": "2026-09-01T13:01:38Z",
+      "scrapedAt": "2026-09-02T13:01:56Z",
       "sourceUrl": "https://www.tori.pe/carta-delivery"
     },
     {
@@ -80,7 +80,7 @@
       "productName": "POLLO TORI",
       "price": 58.9,
       "currency": "PEN",
-      "scrapedAt": "2026-09-01T13:01:38Z",
+      "scrapedAt": "2026-09-02T13:01:56Z",
       "sourceUrl": "https://www.tori.pe/carta-delivery"
     },
     {
