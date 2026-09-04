@@ -8,6 +8,11 @@ on:
       - "data/prices.json"
       - ".github/workflows/deploy.yml"
   workflow_dispatch:
+  # The daily scrape bot pushes with GITHUB_TOKEN, and token-made pushes do not
+  # trigger `on: push` workflows — so rebuild/deploy when the scrape completes.
+  workflow_run:
+    workflows: ["Daily scrape"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -20,11 +25,15 @@ concurrency:
 
 jobs:
   build:
+    if: >-
+      ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.ref }}
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2.0.1
